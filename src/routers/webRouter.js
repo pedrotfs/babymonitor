@@ -35,10 +35,7 @@ router.get("", auth, async (req, res) => {
 })
 
 router.get("/web/login", (req, res) => { 
-    res.render("login", {
-        user: req.session.user.email,
-        id: req.session.user._id
-    })
+    res.render("login", {})
 })
 
 router.get("/web/register", (req, res) => { 

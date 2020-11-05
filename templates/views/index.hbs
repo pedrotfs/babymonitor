@@ -2,41 +2,44 @@
 <html>
     <head>
         <title>.:Babymon:.</title> 
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="icon" href="/img/1.png">
-        
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="icon" type="image/png" href="/img/icon.png">
         </script>
     </head>
     <body>
-        <p class="idInfo">{{id}}</p>
         <input type="hidden" value="{{id}}" name="userId" class="userId">
-        {{user}}       
-        
-        <br><br>
-        
-        <a href=# name="interval" onclick="addSleepCycle()">Dormiu</a>
-        <a href=# name="finish" onclick="endSleepCycle()">Despertou</a>
-        <input type="text" placeholder="time" />
+        <div class="bg__main">
+            <div class="bg__main--buttons">
+                <div class="bg__main--buttons-up"><a href=# name="interval" onclick="addSleepCycle()" class="bt__sleep">Dormiu</a></div>
+                <div class="bg__main--buttons-down"><a href=# name="finish" onclick="endSleepCycle()" class="bt__end">Despertou</a></div>
+            </div>
+            <div class="bg__main--cycles">
+                {{#each cycles}}
+                    {{#if (isdefined this.complete) }}
+                    <br><br>
+                        Ciclo - {{this.number}} - 
+                        {{#if this.complete }}
+                            Completo
+                        {{/if}}
+                        {{#unless this.complete}}
+                            Incompleto
+                        {{/unless}}
+                        <br>
+                    {{/if}}
+                    {{#if (isdefined this.sleep) }}
+                        ( {{this.number}} - {{this.formatedTimeStamp}} - 
+                        {{#if this.sleep}}
+                            Dormiu
+                        {{/if}}
+                        {{#unless this.sleep}}
+                            Acordou
+                        {{/unless}}
+                        ) <br>
+                    {{/if}}
+                {{/each}}
+            </div>
 
-        {{#each cycles}}
-            {{#if (isdefined this.complete) }}
-            <br><br>
-                {{this.number}} - {{this.complete}}
-                <br>
-            {{/if}}
-            {{#if (isdefined this.sleep) }}
-                ( {{this.number}} - {{this.formatedTimeStamp}} - 
-                {{#if this.sleep}}
-                    Dormiu
-                {{/if}}
-                {{#unless this.sleep}}
-                    Acordou
-                {{/unless}}
-                ) <br>
-            {{/if}}
-        {{/each}}
-
-
+        </div>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="/js/app.js"></script>
     </body>
