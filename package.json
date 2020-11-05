@@ -4,7 +4,7 @@
   "description": "baby monitor",
   "main": "index.js",
   "scripts": {
-    "start":"node src/start.js",
+    "start": "node src/start.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
     "test": "env-cmd -f ./config/test.env jest --detectOpenHandles --runInBand"
   },
@@ -18,7 +18,9 @@
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "8.5.1",
     "@sendgrid/mail": "^7.1.0",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "express-session": "^1.17.1"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",

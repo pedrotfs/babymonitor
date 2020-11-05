@@ -2,8 +2,8 @@ const express = require("express")
 
 const auth = require("./../middleware/auth")
 const User = require("./../models/user")
-const { sendWelcome } = require("../emails/account")
-const { sendGoodbye } = require("../emails/account")
+const { sendWelcome } = require("../email/account")
+const { sendGoodbye } = require("../email/account")
 
 const router = new express.Router()
 

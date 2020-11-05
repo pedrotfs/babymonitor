@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>.:Babymon:.</title> 
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="icon" href="/img/1.png">
+        
+        </script>
+    </head>
+    <body>
+        <p class="idInfo">{{id}}</p>
+        <input type="hidden" value="{{id}}" name="userId" class="userId">
+        {{user}}       
+        
+        <br><br>
+        
+        <a href=# name="interval" onclick="addSleepCycle()">Dormiu</a>
+        <a href=# name="finish" onclick="endSleepCycle()">Despertou</a>
+        <input type="text" placeholder="time" />
+
+        {{#each cycles}}
+            {{#if (isdefined this.complete) }}
+            <br><br>
+                {{this.number}} - {{this.complete}}
+                <br>
+            {{/if}}
+            {{#if (isdefined this.sleep) }}
+                ( {{this.number}} - {{this.formatedTimeStamp}} - 
+                {{#if this.sleep}}
+                    Dormiu
+                {{/if}}
+                {{#unless this.sleep}}
+                    Acordou
+                {{/unless}}
+                ) <br>
+            {{/if}}
+        {{/each}}
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="/js/app.js"></script>
+    </body>
+</html>

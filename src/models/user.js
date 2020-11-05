@@ -5,11 +5,6 @@ const jwt = require("jsonwebtoken")
 const Cycle = require("./cycle")
 
 const userScheme = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
     email: {
         type: String,
         unique: true,

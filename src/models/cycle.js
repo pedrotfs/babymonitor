@@ -3,7 +3,7 @@ const SleepCycle = require("./sleepCycle")
 
 const cycleScheme = new mongoose.Schema({
     number: {
-        type: String,
+        type: Number,
         required: true,
         trim: true
     },
@@ -11,18 +11,23 @@ const cycleScheme = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref:"User" //referência outro model, exatamente como foi exportado
+    },
+    complete: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 },  {
     timestamps: true //ativa timestamps para criação e atualização
 })
 
-userScheme.virtual("sleepCycles", {
+cycleScheme.virtual("sleepCycles", {
     ref:"SleepCycle",
     localField: "_id",
     foreignField: "owner"
 })
 
-userScheme.pre("remove", async function (next) {
+cycleScheme.pre("remove", async function (next) {
     const cycle = this
     await SleepCycle.deleteMany({owner: cycle._id})
     next()
