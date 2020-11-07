@@ -9,7 +9,6 @@ router.get("/sleepcycle/add", async (req, res) => {
     const ts = Date.now()
     console.log("access adding cycle for " + req.query.id + "with current timestamp" + ts)
     const latestCycle = await Cycle.find({owner: req.query.id}).sort({_id: -1}).limit(1)
-    console.log("current cycle:" + latestCycle[0]._id)
     
     if(!latestCycle.length) {
         console.log("initiating FIRST cycle")

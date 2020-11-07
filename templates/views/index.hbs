@@ -10,14 +10,16 @@
         <input type="hidden" value="{{id}}" name="userId" class="userId">
         <div class="bg__main">
             <div class="bg__main--buttons">
-                <div class="bg__main--buttons-up"><a href=# name="interval" onclick="addSleepCycle()" class="bt__sleep">Dormiu</a></div>
+                <div class="bg__main--buttons-up"><a href=# name="interval" onclick="addSleepCycle()" class="bt__sleep">
+                    Dormiu
+                </a></div>
                 <div class="bg__main--buttons-down"><a href=# name="finish" onclick="endSleepCycle()" class="bt__end">Despertou</a></div>
             </div>
             <div class="bg__main--cycles">
                 {{#each cycles}}
                     {{#if (isdefined this.complete) }}
                     <br><br>
-                        Ciclo - {{this.number}} - 
+                        Ciclo #{{this.number}} - 
                         {{#if this.complete }}
                             Completo
                         {{/if}}
@@ -27,14 +29,14 @@
                         <br>
                     {{/if}}
                     {{#if (isdefined this.sleep) }}
-                        ( {{this.number}} - {{this.formatedTimeStamp}} - 
+                        {{this.number}} # {{this.formatedTimeStamp}} -
                         {{#if this.sleep}}
                             Dormiu
                         {{/if}}
                         {{#unless this.sleep}}
                             Acordou
                         {{/unless}}
-                        ) <br>
+                        <br>
                     {{/if}}
                 {{/each}}
             </div>

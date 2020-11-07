@@ -30,7 +30,8 @@ router.get("", auth, async (req, res) => {
     res.render("index", {
         user: req.session.user.email,
         id: req.session.user._id,
-        cycles: dto
+        cycles: dto,
+        first: dto[0]
     })
 })
 
@@ -69,7 +70,7 @@ router.post("/web/register", async (req, res) => {
     } catch(e) {
         //
     }
-    res.redirect("/login")
+    res.redirect("/")
 })
 
 async function populateCycles(id) {
@@ -80,7 +81,7 @@ async function populateCycles(id) {
         console.log(cycle._id + ":" + cycle.complete)
         const sleepCycles = await SleepCycle.find({owner: cycle._id}).sort({_id: 1})
         for(const sleepcycle of sleepCycles) {
-            dto.push(sleepcycle)
+            dto.push(sleepcycle)            
             console.log(sleepcycle._id + ":" + sleepcycle.sleep)
         }
     }
