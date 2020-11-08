@@ -19,24 +19,29 @@
                 {{#each cycles}}
                     {{#if (isdefined this.complete) }}
                     <br><br>
-                        Ciclo #{{this.number}} - 
+                        Ciclo 
+                        {{#if (isdefined this.first) }}
+                         {{first.formatedDate}}
+                        {{/if}}
+                        # {{this.number}} - 
                         {{#if this.complete }}
                             Completo
                         {{/if}}
                         {{#unless this.complete}}
                             Incompleto
                         {{/unless}}
-                        <br>
+                        
+                        <br><br>
                     {{/if}}
                     {{#if (isdefined this.sleep) }}
-                        {{this.number}} # {{this.formatedTimeStamp}} -
                         {{#if this.sleep}}
-                            Dormiu
+                            {{this.screenNumber}} # {{this.formatedTime}}
                         {{/if}}
                         {{#unless this.sleep}}
-                            Acordou
+                            => {{this.formatedTime}}
+                            <br>
                         {{/unless}}
-                        <br>
+                        
                     {{/if}}
                 {{/each}}
             </div>

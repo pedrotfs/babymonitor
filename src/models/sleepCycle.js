@@ -24,12 +24,12 @@ const sleepCycleScheme = new mongoose.Schema({
     timestamps: true //ativa timestamps para criação e atualização
 })
 
-sleepCycleScheme.virtual("formatedTimeStamp").get(function() {
-    const day = this.initiated.getDate()
-    const month = this.initiated.getMonth()
-    const year = this.initiated.getFullYear()
-
-    const hours = this.initiated.getHours()
+sleepCycleScheme.virtual("formatedTime").get(function() {
+    
+    const hours = this.initiated.getHours() - 3
+    if(hours < 0) {
+        hours = hours + 24
+    }
     const minutes = this.initiated.getMinutes()
     const seconds = this.initiated.getSeconds()
     let result = ""
@@ -45,9 +45,21 @@ sleepCycleScheme.virtual("formatedTimeStamp").get(function() {
         result = result + '0'
     }    
     result = result + seconds
-    result = result + ", " + day + "/" + month + "/" + year
 
     return result
+})
+
+sleepCycleScheme.virtual("formatedDate").get(function() {
+    const day = this.initiated.getDate()
+    const month = this.initiated.getMonth()
+    const year = this.initiated.getFullYear()
+    let result = ""
+    result = result + day + "/" + month + "/" + year
+    return result
+})
+
+sleepCycleScheme.virtual("screenNumber").get(function() {
+    return this.number / 2
 })
 
 const SleepCycle = mongoose.model("SleepCycle", sleepCycleScheme)

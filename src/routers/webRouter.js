@@ -81,6 +81,9 @@ async function populateCycles(id) {
         console.log(cycle._id + ":" + cycle.complete)
         const sleepCycles = await SleepCycle.find({owner: cycle._id}).sort({_id: 1})
         for(const sleepcycle of sleepCycles) {
+            if(!cycle.first) {
+                cycle.first = sleepcycle
+            }
             dto.push(sleepcycle)            
             console.log(sleepcycle._id + ":" + sleepcycle.sleep)
         }
